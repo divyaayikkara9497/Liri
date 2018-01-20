@@ -107,18 +107,7 @@ function twitterSelection(){
 }
 
 // do-what-it-says function 
-/*function randomText() {
-	fs.readFile("random.txt", "utf8", function(error, data){
-		if(!error) {
-			randomTextResults = data.split(",");
-			spotifySelection(randomTextResults[0], randomTextResults[1]);
-		}
-		else {
-			console.log(error);
-		}
-	})
 
-}*/
 
 
 liriArguements();
