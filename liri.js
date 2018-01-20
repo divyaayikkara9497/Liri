@@ -24,27 +24,29 @@ function liriArguements() {
 	else if(arguement === "my-tweets") {
 		twitterSelection();
 	}
-
+	else if (arguement === "do-what-it-says") {
+		randomText();
+	}
 }
 
 //movies function
 function movieSelection() {
-
 	var movieName = "";
 	var nodeArgs = process.argv;
-
 	for (var i = 3; i < nodeArgs.length; i++) {
-	  if (i > 3 && i < nodeArgs.length) {
-	    movieName = movieName + "+" + nodeArgs[i];
-	  }
-	  else {
-	    movieName += nodeArgs[i];
-	  }
+		if (i > 3 && i < nodeArgs.length) {
+			movieName = movieName + "+" + nodeArgs[i];
+		}
+		else {
+			movieName += nodeArgs[i];
+		}
+	}
+	if (process.argv[3] === undefined) {
+		movieName = "Mr.Nobody";
 	}
 
 	var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&t3896198&apikey=bd30443a";
 	//console.log(queryUrl);
-
 	request(queryUrl, function(error, response, body){
 		if (!error && response.statusCode === 200) {
 			console.log("Title: " + JSON.parse(body).Title);
@@ -56,11 +58,8 @@ function movieSelection() {
 			console.log("Plot of the movie: " + JSON.parse(body).Plot);
 			console.log("Actors in the movie: " + JSON.parse(body).Actors);
 		}
-		
 	})
 }
-
-
 
 //spotify function
 function spotifySelection(){
@@ -75,10 +74,14 @@ function spotifySelection(){
 		}
 	}
 
-	spotify.search({type: 'track' , query: songName},function(error, data){
+	spotify.search({type: 'track' , query: songName, limit: 1},function(error, data){
 		if (!error) {
 			var songInfo = data.tracks.items;
-			console.log("Song: " + songInfo[i].name);
+			//console.log(songInfo);
+			console.log("Artist: " + songInfo[0].artists.name);
+			console.log("Song: " + songInfo[0].name);
+			console.log("Preview: " + songInfo[0].preview_url);
+			console.log("Album: " + songInfo[0].album.name);
 		}
 		else {
 			console.log(error);
@@ -88,16 +91,34 @@ function spotifySelection(){
 
 // twitter function NEED TO WORK
 function twitterSelection(){
-	client.get("statuses/updates", {count: 20}, function(error, tweets, response) {
+	var params = {screen_name:"DivyaNa54933251", count: 20}
+	client.get("statuses/user_timeline", params, function(error, tweets, response) {
 		if (error) {
 			console.log(error);
 		}
 		else {
-			console.log(tweets);
+			console.log("My most recent tweets:");
+			console.log("--------------------");
+			for(var i = 0; i < tweets.length; i++) {
+				console.log(tweets[i].text);
+			}
 		} 
 	})
-
 }
+
+// do-what-it-says function 
+/*function randomText() {
+	fs.readFile("random.txt", "utf8", function(error, data){
+		if(!error) {
+			randomTextResults = data.split(",");
+			spotifySelection(randomTextResults[0], randomTextResults[1]);
+		}
+		else {
+			console.log(error);
+		}
+	})
+
+}*/
 
 
 liriArguements();
