@@ -102,7 +102,7 @@ function twitterSelection(){
 			console.log(error);
 		}
 		else {
-			console.log("My most recent tweets:");
+			console.log("My most recent tweets: ");
 			console.log("--------------------");
 			for(var i = 0; i < tweets.length; i++) {
 				console.log(tweets[i].text);
@@ -118,17 +118,26 @@ function randomText() {
 			var text = data.split(",");
 			console.log(text);
 			songName = text[1];
-			arguement = text[0];
 			console.log(songName);
-			console.log(arguement);
-			liriArguements(arguement);
-			//spotifySelection(songName);
+			
+			spotify.search({type: 'track' , query: songName, limit: 1},function(error, data){
+				if (!error) {
+					var songInfo = data.tracks.items;
+					//console.log(songInfo);
+					console.log("Artist: " + songInfo[0].artists[0].name);
+					console.log("Song: " + songInfo[0].name);
+					console.log("Preview: " + songInfo[0].preview_url);
+					console.log("Album: " + songInfo[0].album.name);
+				}
+				else {
+					console.log(error);
+				}
+			})
 		}
 		else {
 			console.log(error);
 		}
 	})
 }
-
 
 liriArguements();
