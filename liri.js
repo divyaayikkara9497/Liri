@@ -83,11 +83,7 @@ function spotifySelection(){
 		if (!error) {
 			var songInfo = data.tracks.items;
 			//console.log(songInfo);
-			/*for (var i = 0; songInfo[0].artists.length; i++){
-				if ( i === 0) {
-					console.log("Artist: " + songInfo[i].artists[i].name);
-				}
-			}*/
+			console.log("Artist: " + songInfo[0].artists[0].name);
 			console.log("Song: " + songInfo[0].name);
 			console.log("Preview: " + songInfo[0].preview_url);
 			console.log("Album: " + songInfo[0].album.name);
@@ -98,7 +94,7 @@ function spotifySelection(){
 })
 }
 
-// twitter function NEED TO WORK
+// twitter function 
 function twitterSelection(){
 	var params = {screen_name:"DivyaNa54933251", count: 20}
 	client.get("statuses/user_timeline", params, function(error, tweets, response) {
@@ -118,13 +114,19 @@ function twitterSelection(){
 // do-what-it-says function 
 function randomText() {
 	fs.readFile("random.txt" , "utf-8" , function(error, data) {
-		//console.log(data);
-		var text = data.split(",");
-		arguement = text[0];
-		songName = text[1];
-		console.log(arguement);
-		console.log(songName);
-		//spotifySelection(arguement, songName);
+		if (!error) {
+			var text = data.split(",");
+			console.log(text);
+			songName = text[1];
+			arguement = text[0];
+			console.log(songName);
+			console.log(arguement);
+			liriArguements(arguement);
+			//spotifySelection(songName);
+		}
+		else {
+			console.log(error);
+		}
 	})
 }
 
