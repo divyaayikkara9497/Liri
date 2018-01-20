@@ -52,7 +52,12 @@ function movieSelection() {
 			console.log("Title: " + JSON.parse(body).Title);
 			console.log("Year: " + JSON.parse(body).Year);
 			console.log("IMDB Rating: " + JSON.parse(body).imdbRating);
-			//console.log("Rotten Tomatoes Rating:" + JSON.parse(body));
+			//loop to get the Rotten Tomatoes Ratings
+			for(var i = 0; i < JSON.parse(body).Ratings.length; i++) {
+				if (JSON.parse(body).Ratings[i].Source === "Rotten Tomatoes") {
+					console.log("Rotten Tomatoes Rating: " + JSON.parse(body).Ratings[i].Value);
+				}
+			}
 			console.log("Country where the movie was produced: " + JSON.parse(body).Country);
 			console.log("Language of the Movie: " + JSON.parse(body).Language);
 			console.log("Plot of the movie: " + JSON.parse(body).Plot);
