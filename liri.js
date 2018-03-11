@@ -116,9 +116,9 @@ function randomText() {
 	fs.readFile("random.txt" , "utf-8" , function(error, data) {
 		if (!error) {
 			var text = data.split(",");
-			console.log(text);
+			//console.log(text);
 			songName = text[1];
-			console.log(songName);
+			//console.log(songName);
 			
 			spotify.search({type: 'track' , query: songName, limit: 1},function(error, data){
 				if (!error) {
