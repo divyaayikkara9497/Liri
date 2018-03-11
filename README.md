@@ -18,6 +18,7 @@ The Liri Bot can do four functions:
 	* A preview link of the song from Spotify
 	* The album that the song is from 
 
+
 ![Alt text](screenshots/pic-4.png)
 
 
@@ -30,6 +31,8 @@ The Liri Bot can do four functions:
 	* Language of the movie.
 	* Plot of the movie.
 	* Actors in the movie.
+	
+	*If the user does not type a movie, the program will output data for the movie 'Mr. Nobody.'*
 
 ![Alt text](screenshots/pic-3.png)
 
