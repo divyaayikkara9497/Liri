@@ -7,10 +7,11 @@ LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and R
 ## Instructions
 
 First, you'll need to install these Node packages through your terminal/bash window:
+	* run `npm install` in your terminal/bash window
 - [Twitter](https://www.npmjs.com/package/twitter)
 - [Spotify](https://www.npmjs.com/package/node-spotify-api)
 - [Request](https://www.npmjs.com/package/request)
-	* run `npm install` in your terminal/bash window
+
 
 
 The Liri Bot can do four functions: 
